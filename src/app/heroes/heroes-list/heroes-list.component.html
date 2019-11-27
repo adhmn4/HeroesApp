@@ -1,0 +1,57 @@
+<div class="wow fadeInUp">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="md-form">
+          <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()" id="search-input"
+                 mdbInput>
+          <label for="search-input">Search</label>
+        </div>
+      </div>
+      <div class="col-md-6 mt-5 text-right">
+        <div class="custom-control custom-switch">
+          <label for="customSwitch1" class="mr-5">Sort By Power</label>
+          <input type="checkbox" class="custom-control-input" id="customSwitch1" checked [(ngModel)]="sortFlag"
+                 (change)="onSortChange()">
+          <label class="custom-control-label" for="customSwitch1">Sort By Name</label>
+        </div>
+      </div>
+    </div>
+    <div>
+      <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true" class="z-depth-1"
+             id="tableSortExample">
+        <thead class="sticky-top">
+        <tr>
+          <th *ngFor="let head of headElements;" [mdbTableSort]="elements" [sortBy]="head.key"
+              scope="col" aria-controls="tableSortExample" class="pointer">{{head.title | titlecase}}
+            <mdb-icon fas icon="sort"></mdb-icon>
+          </th>
+        </tr>
+        </thead>
+        <tbody #row>
+        <tr mdbTableCol
+            *ngFor="let el of elements; let i = index">
+          <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" scope="row">
+            <a [routerLink]="['/hero', el.id]">{{el.name}}</a>
+          </th>
+          <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+            {{el.power}}
+          </td>
+          <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+            <star-rating [value]="el.rate" checkedcolor="#675af2" uncheckedcolor="rgba(0, 0, 0, 0.26)" size="24px"
+                         readonly="false" (rate)="onRate($event, i)"></star-rating>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot class="grey lighten-5 w-100">
+        <tr>
+          <td colspan="4">
+            <mdb-table-pagination [tableEl]="tableEl" paginationAlign=""
+                                  [searchDataSource]="elements"></mdb-table-pagination>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

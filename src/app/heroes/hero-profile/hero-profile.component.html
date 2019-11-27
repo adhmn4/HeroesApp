@@ -1,0 +1,42 @@
+<div class="flex-center flex-column">
+  <app-loading *ngIf="!dataLoaded"></app-loading>
+  <div class="wow fadeInUp" *ngIf="dataLoaded">
+    <ng-container *ngIf="dataFound">
+      <mdb-card class="testimonial-card">
+        <!--Bacground color-->
+        <div class="card-up indigo lighten-1">
+        </div>
+        <!--Avatar-->
+        <div class="avatar mx-auto">
+          <img [src]="hero.image" class="rounded-circle profile-pic" alt="Profile picture">
+        </div>
+
+        <mdb-card-body>
+          <!--Name-->
+          <mdb-card-title>
+            <h4>{{ hero.name }}</h4>
+          </mdb-card-title>
+          <hr>
+          <div class="text-left">
+            <div>
+              <strong class="text-primary">
+                <small>Description:</small>
+              </strong>
+            </div>
+            <p>
+              {{hero.description}}
+            </p>
+            <div>
+              <strong class="text-primary">
+                <small>Powers:</small>
+              </strong>
+            </div>
+            <p>
+              {{hero.power}}
+            </p></div>
+        </mdb-card-body>
+      </mdb-card>
+    </ng-container>
+    <app-no-data *ngIf="!dataFound"></app-no-data>
+  </div>
+</div>
