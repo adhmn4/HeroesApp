@@ -1,2 +1,29 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary" [containerInside]="false">
 
-<app-heroes></app-heroes>
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" href="#">Heroes App</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" *ngFor="let link of links" routerLinkActive="active"  [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="link.url">
+          {{ link.text }}
+        </a>
+      </li>
+    </ul>
+    <!-- Links -->
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->
+<main>
+  <div class="container-fluid pt-3">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+<!-- /.Main -->
